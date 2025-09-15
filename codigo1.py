@@ -1,19 +1,33 @@
-from collections import Counter
-
 def analisar_texto():
     texto = input("Digite um texto: ")
 
     palavras = texto.split()
 
-    num_palavras = len(palavras)
-    print(f"Total de palavras: {num_palavras}")
+    total = len(palavras)
+    print("Total de palavras:", total)
 
-    palavra_mais_longa = max(palavras, key=len)
-    print(f"A palavra mais longa é: {palavra_mais_longa}")
+    maior = ""
+    for p in palavras:
+        if len(p) > len(maior):
+            maior = p
+    print("A palavra mais longa é:", maior)
 
-    contador_palavras = Counter(palavras)
-    palavra_mais_frequente = contador_palavras.most_common(1)[0]
-    print(f"A palavra que mais aparece é: '{palavra_mais_frequente[0]}' com {palavra_mais_frequente[1]} ocorrências.")
+    contagem = {}
+    for p in palavras:
+        if p in contagem:
+            contagem[p] += 1
+        else:
+            contagem[p] = 1
+
+    mais_freq = None
+    vezes = 0
+    for p, qtd in contagem.items():
+        if qtd > vezes:
+            vezes = qtd
+            mais_freq = p
+
+    print(f"A palavra que mais aparece é: '{mais_freq}' com {vezes} ocorrências.")
+
 
 if __name__ == "__main__":
     analisar_texto()
