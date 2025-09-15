@@ -1,20 +1,33 @@
 def main():
-    
     numeros = []
+
     for i in range(10):
-        numero = int(input(f"Digite o {i+1}º número: "))
-        numeros.append(numero)
+        n = int(input("Digite o " + str(i+1) + "º número: "))
+        numeros.append(n)
 
     print("\nLista original:")
     print(numeros)
 
-    numeros_ordenados = sorted(numeros)
-    print("\nLista ordenada em ordem crescente:")
-    print(numeros_ordenados)
+    lista_ordenada = numeros[:] 
+    for i in range(len(lista_ordenada)):
+        for j in range(0, len(lista_ordenada)-1):
+            if lista_ordenada[j] > lista_ordenada[j+1]:
+                temp = lista_ordenada[j]
+                lista_ordenada[j] = lista_ordenada[j+1]
+                lista_ordenada[j+1] = temp
 
-    numeros_unicos = list(set(numeros))
+    print("\nLista em ordem crescente:")
+    print(lista_ordenada)
+
+    unicos = []
+    for n in numeros:
+        if n not in unicos:
+            unicos.append(n)
+
     print("\nLista sem números repetidos:")
-    print(numeros_unicos)
+    print(unicos)
+
 
 if __name__ == "__main__":
     main()
+
